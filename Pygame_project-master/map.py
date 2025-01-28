@@ -76,6 +76,8 @@ def start_screen():
 
 def find_quick_way(map, start, end):
     sosedy = [(1, 0), (-1, 0), (0, -1), (0, 1)]
+    dict_of_path = {}
+    past_path = start
     curr_path = start
     next_paths = []
     while curr_path != end:
@@ -88,9 +90,14 @@ def find_quick_way(map, start, end):
                     continue
             else:
                 continue
+        past_path = curr_path
         curr_path = next_paths[0]
         next_paths.pop(0)
+        dict_of_path[curr_path] = past_path
+
         print(next_paths)
+        print(dict_of_path)
+    print(curr_path)
 
 
 
@@ -283,7 +290,7 @@ def main():
             MustMoveHero = 0
         else:
             MustMoveHero = MustMoveHero + 1
-        find_quick_way(labyrinth, (scelet.get_x(), scelet.get_y()), (main_charecter.get_x(), main_charecter.get_y()))
+        #find_quick_way(labyrinth, (scelet.get_x(), scelet.get_y()), (main_charecter.get_x(), main_charecter.get_y()))
         if scelet.get_x()  > int(main_charecter.get_x()):
             to_left = True
         if scelet.get_x() < int(main_charecter.get_x()):
